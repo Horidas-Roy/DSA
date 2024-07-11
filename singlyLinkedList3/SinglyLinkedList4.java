@@ -65,6 +65,20 @@ public void removeKey(ListNode head,int key){
       
 }
 
+//How to detect a loop in a linkedList
+public boolean detectLoop(ListNode head){
+    ListNode fastPtr = head;
+    ListNode slowPtr = head;
+    while (fastPtr != null && slowPtr != null) {
+        fastPtr = fastPtr.next.next;
+        slowPtr = slowPtr.next;
+        if (fastPtr == slowPtr) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
     public static void main(String[] args) {
 
@@ -86,6 +100,8 @@ public void removeKey(ListNode head,int key){
         sll.display(head); //7-->12-->17-->20-->25-->28
         sll.removeKey(head,17);
         sll.display(head);
+        
+      //  System.out.println(sll.detectLoop(head)); at first create loop
 
     }
 }
