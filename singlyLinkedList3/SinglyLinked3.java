@@ -13,6 +13,16 @@ public class SinglyLinked3 {
              }
       }
 
+//display
+public void display(ListNode head){
+    ListNode current = head;
+    while (current != null) {
+        System.out.print(current.data+"-->");
+        current = current.next;
+    }
+    System.out.println("Null");
+}
+
 //How to reverse a singlyLinkedList
 public ListNode reverse(ListNode head){
      if(head == null){
@@ -30,15 +40,20 @@ public ListNode reverse(ListNode head){
      return previous;
 }
 
-//display
-public void display(ListNode head){
-    ListNode current = head;
-    while (current != null) {
-        System.out.print(current.data+"-->");
-        current = current.next;
-    }
-    System.out.println("Null");
+//How to find Middle Node from a singlyList Node
+public ListNode getMiddleNode(ListNode head){
+       if (head == null) {
+          return null;
+       }
+       ListNode slowPtr = head;
+       ListNode fastPtr = head;
+       while(fastPtr != null && fastPtr.next != null){
+               slowPtr = slowPtr.next;
+               fastPtr =fastPtr.next.next;
+       }
+       return slowPtr;
 }
+
 
 public static void main(String[] args) {
     //  SinglyLinked3 sll = new SinglyLinked3();
@@ -46,16 +61,19 @@ public static void main(String[] args) {
      ListNode second = new ListNode(12);
      ListNode third = new ListNode(9);
      ListNode fourth = new ListNode(3);
+     ListNode fifth = new ListNode(34);
 
      head.next = second ; //7-->12-->NULL
      second.next = third ; //7-->12-->9-->NULL
      third.next = fourth; //7-->12-->9-->3 -->null
-     fourth.next = null; //7-->12-->9-->3 -->null
+     fourth.next = fifth; //7-->12-->9-->3 -->34-->null
 
      SinglyLinked3 sll = new SinglyLinked3();
      sll.display(head);
      ListNode reversListHead = sll.reverse(head);
-     sll.display(reversListHead);
+     sll.display(reversListHead); //34-->3-->9-->12-->7-->null
+     ListNode middle = sll.getMiddleNode(reversListHead);
+     System.out.println(middle.data);
 
 }
 
