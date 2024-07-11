@@ -69,7 +69,7 @@ public void removeKey(ListNode head,int key){
 public boolean detectLoop(ListNode head){
     ListNode fastPtr = head;
     ListNode slowPtr = head;
-    while (fastPtr != null && slowPtr != null) {
+    while (fastPtr != null && fastPtr.next != null) {
         fastPtr = fastPtr.next.next;
         slowPtr = slowPtr.next;
         if (fastPtr == slowPtr) {
@@ -86,7 +86,7 @@ public ListNode startOfLoop(ListNode head){
      }
      ListNode fastPtr = head;
      ListNode slowPtr = head;
-     while (fastPtr != null && slowPtr != null) {
+     while (fastPtr != null && fastPtr.next != null) {
           fastPtr = fastPtr.next.next;
           slowPtr = slowPtr.next;
           if (fastPtr == slowPtr) {
@@ -105,6 +105,31 @@ public ListNode getStartingNodeOfLoop(ListNode head, ListNode slowPtr){
     return temp;
 }
 
+//Remove loop from a singly Linked List
+public ListNode removeLoop(ListNode head){
+      if (head == null) {
+        return null;
+      }
+      ListNode fastPtr = head;
+      ListNode slowPtr = head;
+      //find loop
+      while (fastPtr != null && fastPtr.next != null) {
+           fastPtr = fastPtr.next.next;
+           slowPtr = slowPtr.next;
+           if (fastPtr == slowPtr) {
+            //loop gotted and find first node of loop
+                    ListNode temp = head;
+                    while (slowPtr.next != temp.next) {
+                        slowPtr = slowPtr.next;
+                        temp = temp.next;
+                    }
+                    //goted first node of loop and remove loop
+                    slowPtr.next = null;
+           }
+      }
+      return head;
+}
+
 
     public static void main(String[] args) {
 
@@ -118,7 +143,7 @@ public ListNode getStartingNodeOfLoop(ListNode head, ListNode slowPtr){
         second.next = third;
         third.next = fourth;
         fourth.next = fifth;
-        fifth.next = second;
+        fifth.next = fourth;
 
         SinglyLinkedList4 sll = new SinglyLinkedList4();
         // sll.display(head);
@@ -129,8 +154,11 @@ public ListNode getStartingNodeOfLoop(ListNode head, ListNode slowPtr){
         
       //  System.out.println(sll.detectLoop(head)); at first create loop
 
-      ListNode startNodeOfLoop = sll.startOfLoop(head);
-      System.out.println(startNodeOfLoop.data);
+    //   ListNode startNodeOfLoop = sll.startOfLoop(head);
+    //   System.out.println(startNodeOfLoop.data);
+
+      ListNode removeLoopHead = sll.removeLoop(head);
+      sll.display(removeLoopHead);
 
     }
 }
