@@ -75,30 +75,48 @@ public ListNode getNthNodeFromEnd(ListNode head,int n){
      return mainPtr;
 }
 
+//How to remove data from the sorted linkedList
+public void removeDuplicates(ListNode head){
+      if(head == null){
+        return;
+      }
+      ListNode current = head;
+      while (current != null && current.next != null) {
+            if (current.data == current.next.data) {
+                   current.next =current.next.next;
+            }else{
+                current = current.next;
+            }
+      }
+}
+
 
 public static void main(String[] args) {
     //  SinglyLinked3 sll = new SinglyLinked3();
      ListNode head = new ListNode(7);
      ListNode second = new ListNode(12);
-     ListNode third = new ListNode(9);
+     ListNode third = new ListNode(3);
      ListNode fourth = new ListNode(3);
      ListNode fifth = new ListNode(34);
 
      head.next = second ; //7-->12-->NULL
-     second.next = third ; //7-->12-->9-->NULL
-     third.next = fourth; //7-->12-->9-->3 -->null
-     fourth.next = fifth; //7-->12-->9-->3 -->34-->null
+     second.next = third ; //7-->12-->3-->NULL
+     third.next = fourth; //7-->12-->3-->3 -->null
+     fourth.next = fifth; //7-->12-->3-->3 -->34-->null
 
      SinglyLinked3 sll = new SinglyLinked3();
      sll.display(head);
 
     //  ListNode reversListHead = sll.reverse(head);
-    //  sll.display(reversListHead); //34-->3-->9-->12-->7-->null
+    //  sll.display(reversListHead); //34-->3-->3-->12-->7-->null
     //  ListNode middle = sll.getMiddleNode(reversListHead);
     //  System.out.println(middle.data);
 
-    ListNode nthNode = sll.getNthNodeFromEnd(head, 3);
-    System.out.println(nthNode.data);
+    // ListNode nthNode = sll.getNthNodeFromEnd(head, 3);
+    // System.out.println(nthNode.data);
+
+    sll.removeDuplicates(head);
+    sll.display(head);
 
 }
 
