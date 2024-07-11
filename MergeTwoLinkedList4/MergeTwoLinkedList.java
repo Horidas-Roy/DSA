@@ -54,6 +54,9 @@ public ListNode b(){
 
 //how to merge two singlyList Node
 public ListNode mergeTwoList(ListNode a, ListNode b){
+      if (a == null) return b;
+      if (b == null) return a;
+
        ListNode dummy = new ListNode(0);
        ListNode tail = dummy;
        while (a != null && b != null) {
@@ -74,6 +77,31 @@ public ListNode mergeTwoList(ListNode a, ListNode b){
        return dummy.next;
 }
 
+//Add two numbers of two different singlyLinkedList
+public ListNode add(ListNode a, ListNode b){
+     if (a == null) return b;
+     if (b == null) return a;
+
+     ListNode dummy = new ListNode(0);
+     ListNode tail = dummy;
+     int carry = 0;
+     while (a != null || b != null) {
+        int x = (a != null) ? a.data : 0;
+        int y = (b != null) ? b.data : 0;
+        int sum = x+y+carry;
+        carry = sum/10;
+        tail.next = new ListNode(sum%10);
+        tail = tail.next;
+        if (a != null) a = a.next;
+        if (b != null) b = b.next;
+     }
+     if (carry > 0) {
+        tail.next = new ListNode(carry);
+     }
+
+     return dummy.next;
+}
+
 
     public static void main(String[] args) {
         MergeTwoLinkedList sll = new MergeTwoLinkedList();
@@ -82,7 +110,11 @@ public ListNode mergeTwoList(ListNode a, ListNode b){
 
         sll.display(a);
         sll.display(b);
-        ListNode resultHead = sll.mergeTwoList(a, b);
+
+        // ListNode resultHead = sll.mergeTwoList(a, b);
+        // sll.display(resultHead);
+
+        ListNode resultHead = sll.add(a, b);
         sll.display(resultHead);
     }
 }
