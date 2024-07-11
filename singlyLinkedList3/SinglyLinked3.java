@@ -90,6 +90,26 @@ public void removeDuplicates(ListNode head){
       }
 }
 
+//How to insert a node in sorted likedList
+public ListNode insertNodeInShortedList(int value){
+    ListNode newNode = new ListNode(value);
+     if (head == null || head.data>newNode.data) {
+        newNode.next = head;
+        head = newNode;
+        return head;
+     }
+     ListNode current = head;
+     ListNode temp = null;
+     while (current != null && current.data < newNode.data) {
+           temp = current;
+           current = current.next;
+     }
+     newNode.next = current;
+     temp.next = newNode ;
+
+     return head;
+}
+
 
 public static void main(String[] args) {
     //  SinglyLinked3 sll = new SinglyLinked3();
@@ -115,8 +135,24 @@ public static void main(String[] args) {
     // ListNode nthNode = sll.getNthNodeFromEnd(head, 3);
     // System.out.println(nthNode.data);
 
-    sll.removeDuplicates(head);
-    sll.display(head);
+    // sll.removeDuplicates(head);
+    // sll.display(head);
+
+    //for sorted linked list
+      head = new ListNode(7);
+      second = new ListNode(12);
+      third = new ListNode(14);
+      fourth = new ListNode(17);
+      fifth = new ListNode(34);
+
+     head.next = second ; 
+     second.next = third ; 
+     third.next = fourth; 
+     fourth.next = fifth; //7-->12-->14-->17 -->34-->null
+
+     sll.display(head);
+     sll.insertNodeInShortedList(20);
+     sll.display(head);
 
 }
 
