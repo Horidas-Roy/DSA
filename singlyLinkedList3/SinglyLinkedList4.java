@@ -79,6 +79,32 @@ public boolean detectLoop(ListNode head){
     return false;
 }
 
+//How to find start of the loop in a singlyLinked List
+public ListNode startOfLoop(ListNode head){
+     if(head == null){
+        return head;
+     }
+     ListNode fastPtr = head;
+     ListNode slowPtr = head;
+     while (fastPtr != null && slowPtr != null) {
+          fastPtr = fastPtr.next.next;
+          slowPtr = slowPtr.next;
+          if (fastPtr == slowPtr) {
+              return getStartingNodeOfLoop(head, slowPtr);
+          }
+     }
+     return null;
+}
+
+public ListNode getStartingNodeOfLoop(ListNode head, ListNode slowPtr){
+    ListNode temp = head;
+    while (slowPtr != temp) {
+        slowPtr = slowPtr.next;
+        temp = temp.next;
+    }
+    return temp;
+}
+
 
     public static void main(String[] args) {
 
@@ -92,16 +118,19 @@ public boolean detectLoop(ListNode head){
         second.next = third;
         third.next = fourth;
         fourth.next = fifth;
-        fifth.next = null;
+        fifth.next = second;
 
         SinglyLinkedList4 sll = new SinglyLinkedList4();
-        sll.display(head);
-        sll.insertNodeInShortedList(head,20);
-        sll.display(head); //7-->12-->17-->20-->25-->28
-        sll.removeKey(head,17);
-        sll.display(head);
+        // sll.display(head);
+        // sll.insertNodeInShortedList(head,20);
+        // sll.display(head); //7-->12-->17-->20-->25-->28
+        // sll.removeKey(head,17);
+        // sll.display(head);
         
       //  System.out.println(sll.detectLoop(head)); at first create loop
+
+      ListNode startNodeOfLoop = sll.startOfLoop(head);
+      System.out.println(startNodeOfLoop.data);
 
     }
 }
