@@ -44,7 +44,26 @@ public ListNode insertNodeInShortedList(ListNode head,int value){
 
      return head;
 }
-
+//How to remove a given key from  a singly LinkedList
+public void removeKey(ListNode head,int key){
+      if (key < 0) {
+        throw new IllegalArgumentException("key-->"+key);
+      }
+      if (head == null) {
+        return;
+      }
+      ListNode current = head;
+      ListNode temp = null;
+      while (current != null && current.data != key) {
+            temp =current;
+            current = current.next;
+      }
+      if (current == null) {
+        return;
+      }
+      temp.next = current.next;
+      
+}
 
 
     public static void main(String[] args) {
@@ -64,6 +83,9 @@ public ListNode insertNodeInShortedList(ListNode head,int value){
         SinglyLinkedList4 sll = new SinglyLinkedList4();
         sll.display(head);
         sll.insertNodeInShortedList(head,20);
+        sll.display(head); //7-->12-->17-->20-->25-->28
+        sll.removeKey(head,17);
         sll.display(head);
+
     }
 }
