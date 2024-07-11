@@ -53,6 +53,27 @@ public ListNode getMiddleNode(ListNode head){
        }
        return slowPtr;
 }
+//How to find nth node from the end of a singlyListNode
+public ListNode getNthNodeFromEnd(ListNode head,int n){
+     if (n<0) {
+        throw new IllegalArgumentException("n -->"+n);
+     }
+     if (head == null) {
+        return null;
+     }
+     ListNode mainPtr = head;
+     ListNode refPtr = head;
+     int count = 0;
+     while (count<n) {
+        refPtr = refPtr.next;
+        count++;
+     }
+     while (refPtr != null) {
+        refPtr = refPtr.next;
+        mainPtr = mainPtr.next;
+     }
+     return mainPtr;
+}
 
 
 public static void main(String[] args) {
@@ -70,10 +91,14 @@ public static void main(String[] args) {
 
      SinglyLinked3 sll = new SinglyLinked3();
      sll.display(head);
-     ListNode reversListHead = sll.reverse(head);
-     sll.display(reversListHead); //34-->3-->9-->12-->7-->null
-     ListNode middle = sll.getMiddleNode(reversListHead);
-     System.out.println(middle.data);
+
+    //  ListNode reversListHead = sll.reverse(head);
+    //  sll.display(reversListHead); //34-->3-->9-->12-->7-->null
+    //  ListNode middle = sll.getMiddleNode(reversListHead);
+    //  System.out.println(middle.data);
+
+    ListNode nthNode = sll.getNthNodeFromEnd(head, 3);
+    System.out.println(nthNode.data);
 
 }
 
