@@ -1,4 +1,4 @@
-package MergeTwoLinkedList4;
+package List.MergeTwoLinkedList4;
 
 public class MergeTwoLinkedList {
     private ListNode head;

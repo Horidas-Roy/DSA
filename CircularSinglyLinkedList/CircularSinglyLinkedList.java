@@ -1,4 +1,4 @@
-package CircularSinglyLinkedList;
+package List.CircularSinglyLinkedList;
 
 import java.util.NoSuchElementException;
 

@@ -1,4 +1,4 @@
-package singlyLinkedList;
+package List.singlyLinkedList;
 public class movesZero{
 
     public void printArray(int[] arr){

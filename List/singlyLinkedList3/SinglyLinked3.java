@@ -1,4 +1,4 @@
-package singlyLinkedList3;
+package List.singlyLinkedList3edList4.singlyLinkedList3;
 
 public class SinglyLinked3 {
     //creating  a singlyLinkedList Node
