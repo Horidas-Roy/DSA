@@ -57,10 +57,24 @@ public void disPlay(){
     System.out.println("null");
 }
 
+//How to insert node at the start of the Linked List
+public void insertFast(int value){
+    ListNode temp = new ListNode(value);
+    if(last == null){
+        last = temp;
+    }else{
+        temp.next = last.next;
+    }
+    last.next = temp;
+    length++;
+}
+
 
        public static void main(String[] args) {
            CircularSinglyLinkedList cSll = new CircularSinglyLinkedList();
            cSll.createCircularLinkedList();
+           cSll.disPlay();
+           cSll.insertFast(0);
            cSll.disPlay();
        }
 }
