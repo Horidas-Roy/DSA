@@ -69,12 +69,27 @@ public void insertFast(int value){
     length++;
 }
 
+//How to insert last of a Circular Singly Linked List
+public void insertLast(int value){
+    ListNode temp = new ListNode(value);
+    if( last == null){
+        last = temp;
+        last.next = last;
+    }else{
+        temp.next = last.next;
+        last.next = temp;
+        last = temp;
+    }
+    length++;
+}
+
 
        public static void main(String[] args) {
            CircularSinglyLinkedList cSll = new CircularSinglyLinkedList();
            cSll.createCircularLinkedList();
            cSll.disPlay();
            cSll.insertFast(0);
+           cSll.insertLast(100);
            cSll.disPlay();
        }
 }
