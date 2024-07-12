@@ -1,5 +1,7 @@
 package CircularSinglyLinkedList;
 
+import java.util.NoSuchElementException;
+
 public class CircularSinglyLinkedList {
        private ListNode last;
        private int length;
@@ -83,6 +85,23 @@ public void insertLast(int value){
     length++;
 }
 
+//How to remove first Node from a Circular SinglyLinked List
+public ListNode removeFirst(){
+    if(isEmpty()){
+        throw new NoSuchElementException();
+    }
+    ListNode temp = last.next;
+    if(last.next == last){
+        last = null;
+    }else{
+        last.next = temp.next;
+    }
+    temp.next = null;
+    length--;
+
+    return temp;
+}
+
 
        public static void main(String[] args) {
            CircularSinglyLinkedList cSll = new CircularSinglyLinkedList();
@@ -90,6 +109,13 @@ public void insertLast(int value){
            cSll.disPlay();
            cSll.insertFast(0);
            cSll.insertLast(100);
+           cSll.disPlay();
+           cSll.removeFirst();
+           cSll.removeFirst();
+           cSll.removeFirst();
+           cSll.removeFirst();
+           cSll.removeFirst();
+           cSll.removeFirst();
            cSll.disPlay();
        }
 }
