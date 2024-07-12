@@ -1,5 +1,7 @@
 package DoublyLinkedList;
 
+import java.util.NoSuchElementException;
+
 public class DoublyLinkedList {
      private ListNode head;
      private ListNode tail;
@@ -85,6 +87,25 @@ public void insertFast(int value){
     length++;
 }
 
+//How to deleteFirst of a doublyLinkedList
+public ListNode deleteFirst(){
+   if(isEmpty()){
+      throw new NoSuchElementException();
+   }
+
+   ListNode temp = head;
+   if(tail == head){
+      tail = null;
+      head = null;
+   }else{
+      head = head.next;
+      head.previous = null;
+   }
+   temp.next = null;
+   length--;
+   return temp;
+}
+
 
      public static void main(String[] args) {
             DoublyLinkedList dll = new DoublyLinkedList();
@@ -95,7 +116,10 @@ public void insertFast(int value){
             dll.insertFast(4);
 
             dll.displayForward();
-            dll.displayBacward();
+            // dll.displayBacward();
+
+            dll.deleteFirst();
+            dll.displayForward();
             
      }
 }
