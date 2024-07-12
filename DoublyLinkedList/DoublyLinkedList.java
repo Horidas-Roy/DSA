@@ -71,12 +71,28 @@ public void insertLast(int value){
    length++;
 }
 
+//How to insertFast of a doublyLinkedList
+public void insertFast(int value){
+    ListNode newNode = new ListNode(value);
+    if (isEmpty()) {
+      head = newNode;
+      tail = newNode;
+    }else{
+      head.previous = newNode;
+      newNode.next = head;
+      head = newNode;
+    }
+    length++;
+}
+
 
      public static void main(String[] args) {
             DoublyLinkedList dll = new DoublyLinkedList();
             
             dll.insertLast(1);
             dll.insertLast(2);
+            dll.insertFast(3);
+            dll.insertFast(4);
 
             dll.displayForward();
             dll.displayBacward();
