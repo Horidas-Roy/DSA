@@ -36,7 +36,7 @@ public void displayForward(){
      }
      ListNode temp = head;
      while (temp != null) {
-         System.out.println(temp.data+"-->");
+         System.out.print(temp.data+"-->");
          temp = temp.next;
      }
      System.out.println("null");
@@ -49,16 +49,37 @@ public void displayBacward(){
    }
    ListNode temp = tail;
    while (temp != null) {
-      System.out.println(temp.data+"-->");
+      System.out.print(temp.data+"-->");
       temp = temp.previous;
    }
    System.out.println("null");
 }
 
+//How to insertLast at the doublyLinked List
+public void insertLast(int value){
+   
+   ListNode newNode = new ListNode(value);
+
+   if (isEmpty()) {
+      head = newNode;
+      tail = newNode;
+   }else{
+      tail.next = newNode;
+      newNode.previous = tail;
+      tail = newNode;
+   }
+   length++;
+}
+
 
      public static void main(String[] args) {
             DoublyLinkedList dll = new DoublyLinkedList();
+            
+            dll.insertLast(1);
+            dll.insertLast(2);
 
+            dll.displayForward();
+            dll.displayBacward();
             
      }
 }
