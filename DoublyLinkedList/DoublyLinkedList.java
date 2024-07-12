@@ -106,6 +106,24 @@ public ListNode deleteFirst(){
    return temp;
 }
 
+//How to deleteLastNode of a doublyLinkedList
+public ListNode deleteLast(){
+   if (isEmpty()) {
+      throw new NoSuchElementException();
+   }
+   ListNode temp = tail;
+   if(head == tail){
+      head = null;
+      tail = null;
+   }else{
+      tail = tail.previous;
+      tail.next = null;
+   }
+   temp.previous = null;
+   length--;
+   return temp;
+}
+
 
      public static void main(String[] args) {
             DoublyLinkedList dll = new DoublyLinkedList();
@@ -118,7 +136,13 @@ public ListNode deleteFirst(){
             dll.displayForward();
             // dll.displayBacward();
 
-            dll.deleteFirst();
+            // dll.deleteFirst();
+            // dll.displayForward();
+
+            dll.deleteLast();
+            dll.deleteLast();
+            dll.deleteLast();
+            dll.deleteLast();
             dll.displayForward();
             
      }
