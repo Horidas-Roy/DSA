@@ -41,6 +41,18 @@ public void inOrder(TreeNode root){
     inOrder(root.right);
 }
 
+//How to search in a Binary Tree
+public TreeNode search(TreeNode root,int key){
+    if (root == null || root.data == key) {
+        return root;
+    }
+    if(key < root.data){
+        return search(root.left, key);
+    }else{
+        return search(root.right, key);
+    }
+}
+
 
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
@@ -49,5 +61,7 @@ public void inOrder(TreeNode root){
         bst.insertRecursive(7);
         bst.insertRecursive(1);
         bst.inOrder();
+        TreeNode searchKey = bst.search(bst.root, 5);
+        System.out.println("Searching Result: "+searchKey.data);
     }
 }
