@@ -1,4 +1,4 @@
-
+import java.util.Stack;
 
 public class BineryTree {
      private Treenode root;
@@ -40,9 +40,30 @@ public void preOrder(Treenode root){
      preOrder(root.right);
 }
 
+//Iterative preOrder traversal of a Binary Tree
+public void itrePreOrder(){
+    if( root == null){
+        return;
+    }
+    Stack<Treenode> stack = new Stack<>();
+    stack.push(root);
+    while(!stack.isEmpty()){
+        Treenode temp = stack.pop();
+        System.out.print(temp.data+" ");
+        if (temp.right != null) {
+            stack.push(temp.right);
+        }
+        if(temp.left != null){
+            stack.push(temp.left);
+        }
+    }
+    System.out.println("");
+}
+
 public static void main(String[] args) {
       BineryTree bT = new BineryTree();
       bT.createBinaryTree();
+      bT.itrePreOrder();
       bT.preOrder(bT.root);
 }
 
