@@ -60,11 +60,22 @@ public void itrePreOrder(){
     System.out.println("");
 }
 
+////Recursive inOrder traversal of a Binary Tree
+public void inOrderRecursive(Treenode root){
+    if (root == null) {
+        return;
+    }
+    inOrderRecursive(root.left);
+    System.out.print(root.data+"");
+    inOrderRecursive(root.right);
+}
+
 public static void main(String[] args) {
       BineryTree bT = new BineryTree();
       bT.createBinaryTree();
       bT.itrePreOrder();
       bT.preOrder(bT.root);
+      bT.inOrderRecursive(bT.root);
 }
 
 
