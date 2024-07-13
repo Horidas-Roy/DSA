@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BineryTree {
@@ -111,11 +113,30 @@ public void postOrderIterative(){
                 System.out.print(temp.data);
                 while (!stack.isEmpty() && temp == stack.peek().right) {
                     temp = stack.pop();
-                    System.out.print(temp.data+"");
+                    System.out.print(temp.data+" ");
                 }
             }else{
                 current = temp;
             }
+        }
+     }
+}
+
+//Level order traversal of a binary tree
+public void levelOrder(){
+     if (root == null) {
+        return;
+     }
+     Queue<Treenode> queue = new LinkedList<>();
+     queue.offer(root);
+     while (!queue.isEmpty()) {
+        Treenode temp = queue.poll();
+        System.out.print(temp.data+" ");
+        if (temp.left != null) {
+            queue.offer(temp.left);
+        }
+        if (temp.right != null) {
+            queue.offer(temp.right);
         }
      }
 }
@@ -127,8 +148,9 @@ public static void main(String[] args) {
     //   bT.preOrder(bT.root);
     //   bT.inOrderRecursive(bT.root);
     //   bT.inOrderIterative();
-      bT.postOrderRecursive(bT.root);
-      bT.postOrderIterative();
+    //   bT.postOrderRecursive(bT.root);
+    //   bT.postOrderIterative();
+      bT.levelOrder();
 }
 
 
