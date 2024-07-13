@@ -87,6 +87,38 @@ public void inOrderIterative(){
           }
      }
 }
+//Recursive post Order traversal
+public void postOrderRecursive(Treenode root){
+     if(root == null){//Base case
+        return;
+     }
+     postOrderRecursive(root.left);
+     postOrderRecursive(root.right);
+     System.out.print(root.data+" ");
+}
+//Iterative post Order traversal
+public void postOrderIterative(){
+     Treenode current = root;
+     Stack<Treenode> stack = new Stack<>();
+     while (current != null || !stack.isEmpty()) {
+        if (current != null) {
+            stack.push(current);
+            current =current.left;
+        }else{
+            Treenode temp = stack.peek().right;
+            if (temp == null) {
+                temp = stack.pop();
+                System.out.print(temp.data);
+                while (!stack.isEmpty() && temp == stack.peek().right) {
+                    temp = stack.pop();
+                    System.out.print(temp.data+"");
+                }
+            }else{
+                current = temp;
+            }
+        }
+     }
+}
 
 public static void main(String[] args) {
       BineryTree bT = new BineryTree();
@@ -94,7 +126,9 @@ public static void main(String[] args) {
     //   bT.itrePreOrder();
     //   bT.preOrder(bT.root);
     //   bT.inOrderRecursive(bT.root);
-      bT.inOrderIterative();
+    //   bT.inOrderIterative();
+      bT.postOrderRecursive(bT.root);
+      bT.postOrderIterative();
 }
 
 
