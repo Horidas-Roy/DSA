@@ -60,7 +60,7 @@ public void itrePreOrder(){
     System.out.println("");
 }
 
-////Recursive inOrder traversal of a Binary Tree
+//Recursive inOrder traversal of a Binary Tree
 public void inOrderRecursive(Treenode root){
     if (root == null) {
         return;
@@ -69,13 +69,32 @@ public void inOrderRecursive(Treenode root){
     System.out.print(root.data+"");
     inOrderRecursive(root.right);
 }
+//Iterative inOrder traversal of a Binary Tree
+public void inOrderIterative(){
+     if (root == null) {
+        return;
+     }
+     Stack<Treenode> stack = new Stack<>();
+     Treenode temp = root;
+     while (!stack.isEmpty() || temp != null) {
+          if(temp != null){
+                stack.push(temp);
+                temp = temp.left;
+          }else{
+            temp = stack.pop();
+            System.out.print(temp.data+" ");
+            temp = temp.right;
+          }
+     }
+}
 
 public static void main(String[] args) {
       BineryTree bT = new BineryTree();
       bT.createBinaryTree();
-      bT.itrePreOrder();
-      bT.preOrder(bT.root);
-      bT.inOrderRecursive(bT.root);
+    //   bT.itrePreOrder();
+    //   bT.preOrder(bT.root);
+    //   bT.inOrderRecursive(bT.root);
+      bT.inOrderIterative();
 }
 
 
