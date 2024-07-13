@@ -140,6 +140,23 @@ public void levelOrder(){
         }
      }
 }
+//Maximum value in Binary Tree
+public int maxValue(Treenode root){
+    if(root == null){
+        return Integer.MIN_VALUE;
+    }
+    int result = root.data;
+    int left = maxValue(root.left);
+    int right = maxValue(root.right);
+    if (left > result) {
+        result = left;
+    }
+    if (right > result) {
+        result = right;
+    }
+
+    return result;
+}
 
 public static void main(String[] args) {
       BineryTree bT = new BineryTree();
@@ -151,6 +168,7 @@ public static void main(String[] args) {
     //   bT.postOrderRecursive(bT.root);
     //   bT.postOrderIterative();
       bT.levelOrder();
+      System.out.println("\n\nmaxValue: "+bT.maxValue(bT.root));
 }
 
 
