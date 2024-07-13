@@ -1,3 +1,4 @@
+package Queue;
 import java.util.NoSuchElementException;
 
 public class Queue {
@@ -56,7 +57,7 @@ public class Queue {
 //DEQUEUE 
 public int deQueue(){
     if (isEmpty()) {
-        throw new NoSuchElementException();
+        throw new NoSuchElementException("Queue is already Empty!!");
     }
     int result = front.data;
     front = front.next;
@@ -67,6 +68,22 @@ public int deQueue(){
     return result;
 }
 
+//return fisrt value of a queue
+public int first(){
+    if (isEmpty()) {
+        throw new NoSuchElementException("Queue is Empty!");
+    }
+    return front.data;
+}
+
+//return last value of a queue
+public int last(){
+    if (isEmpty()) {
+        throw new NoSuchElementException("Queue is Empty!");
+    }
+    return rear.data;
+}
+
     public static void main(String[] args) {
           Queue queue = new Queue();
 
@@ -75,10 +92,12 @@ public int deQueue(){
           queue.enQueue(10);
           queue.enQueue(15);
           queue.print();
-          queue.deQueue();
-          queue.deQueue();
-          queue.deQueue();
-          queue.deQueue();
-          queue.print();
+        //   queue.deQueue();
+        //   queue.deQueue();
+        //   queue.deQueue();
+        //   queue.deQueue();
+        //   queue.print();
+          System.out.println("first: "+queue.first());
+          System.out.println("last: "+queue.last());
     }
 }
