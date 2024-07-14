@@ -1,3 +1,4 @@
+package BineryTree;
 public class BinarySearchTree {
     private TreeNode root;
     private class TreeNode {
@@ -53,6 +54,25 @@ public TreeNode search(TreeNode root,int key){
     }
 }
 
+//Validate Binary Tree
+public boolean isValid(){
+    return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
+}
+public boolean isValid(TreeNode root,long min, long max){
+      if (root == null) {
+        return true;
+      }
+      if(min >= root.data || max <= root.data){
+          return false;
+      }
+      boolean left = isValid(root.left, min, root.data);
+      if(left){
+        boolean right = isValid(root.right, root.data, max);
+        return right;
+      }
+      return false;
+}
+
 
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
@@ -62,6 +82,7 @@ public TreeNode search(TreeNode root,int key){
         bst.insertRecursive(1);
         bst.inOrder();
         TreeNode searchKey = bst.search(bst.root, 5);
-        System.out.println("Searching Result: "+searchKey.data);
+        System.out.println("\nSearching Result: "+searchKey.data);
+        System.out.println("isValid: "+bst.isValid());
     }
 }
