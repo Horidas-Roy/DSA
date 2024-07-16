@@ -1,52 +1,49 @@
 public class MergeSort {
-      public int[] merge(int[] arr1, int[] arr2){
-        int n = arr1.length;
-        int m = arr2.length;
-        int[] result = new int[n+m];
-        int i = 0; //travers arr1
-        int j = 0; //travers arr2
-        int k = 0; //travers result
-
-        while ( i < n && j < m) { //boundary conditions
-            if (arr1[i] < arr2[j]) {
-                result[k] = arr1[i];//sorting arr1 element into result
-                i++;
-            }else{
-                result[k] = arr2[j];//sorting arr2 element into result
-                j++;
+      public void print(int[] arr){
+          for(int i=0; i< arr.length; i++){
+             System.out.print(arr[i]+" ");
+          }
+          System.out.println();
+      }
+      public void sort(int[] arr,int[] temp, int low, int high){
+            if(low<high){
+                int mid = low + (high - low)/2;
+                sort(arr, temp, low, mid);
+                sort(arr, temp, mid+1, high);
+                merge(arr,temp,low,mid,high);
             }
-            k++;
-        }
-        //either arr1 or arr2 got exhausted 
-        while (i < n) { //arr2 got exhausted
-             result[k] = arr1[i];//sorting arr1 element into result
-             i++;
-             k++;
-        }
-        while (j < m) {  //arr1 got exhausted
-            result[k] = arr2[j]; //sorting arr2 element into result
-            j++;
-            k++;
-        }
-        return result;
       }
 
-//display
-public void display(int[] arr){
-      for(int i=0; i<arr.length; i++){
-          System.out.print(arr[i]+" ");
+      public void merge(int[] arr, int[] temp, int low, int mid, int high){
+            for(int i = low; i<= high; i++){
+                temp[i] = arr[i];
+            }
+            int i = low; //travers the left sorted subarray
+            int j = mid + 1; //travers the right sorted subarray
+            int k = low; // will merge both arrays into original array
+            
+            while (i <= mid && j <= high) {
+                if (temp[i] <= temp[j]) {
+                    arr[k] = temp[i];
+                    i++;
+                }else{
+                    arr[k] = temp[j];
+                    j++;
+                }
+                k++;
+            }
+            while (i <= mid) {
+                 arr[k] = temp[i];
+                 i++;
+                 k++;
+            }
       }
-      System.out.println("");
-}
 
-public static void main(String[] args) {
-      int[] arr1 = {2,3,5,10,30};
-      int[] arr2 = {4,6,11,15};
-
-      MergeSort ms = new MergeSort();
-      int[] result = ms.merge(arr1, arr2);
-      ms.display(result);
-
-}
-
+      public static void main(String[] args) {
+           int[] arr = {9, 5, 2, 4, 3};
+           MergeSort ms = new MergeSort();
+           ms.print(arr);
+           ms.sort(arr, new int[arr.length], 0, arr.length-1);
+           ms.print(arr);
+      }
 }
