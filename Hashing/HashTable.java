@@ -1,3 +1,4 @@
+package Hashing;
 
 
 public class HashTable {
@@ -103,9 +104,9 @@ public class HashTable {
          HashTable table = new HashTable(10);
          table.put(105, "Tom");
          table.put(21, "Sana");
-         System.err.println(table.size());
          System.out.println(table.get(105));
          System.out.println(table.get(10));
          System.out.println("remove: "+table.remove(105));
+         System.err.println(table.size());
     }
 }
